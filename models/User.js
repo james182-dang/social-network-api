@@ -18,3 +18,12 @@ const UserSchema = new Schema({
         ref: 'Thoughts'
     }
 })
+
+// create the User model using the UserSchema
+const User = model('User', UserSchema);
+
+// get total friendCount
+// CODE HERE
+
+// export the user model
+module.exports = User;
