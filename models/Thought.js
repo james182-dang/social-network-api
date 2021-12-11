@@ -4,9 +4,9 @@ const dateFormat = require('../utils/dateFormat');
 const ThoughtSchema = new Schema({
     thoughtText: {
         type: String,
-        required: 'Please enter text for your thought.',
-        min: [1],
-        max: [280, 'This thought is too long!']
+        required,
+        min: [1, 'Please enter text for your thought.'],
+        max: [280, 'This thought is too long! (280 maximum characters)']
     },
     createdAt: {
         type: Date,
@@ -18,17 +18,22 @@ const ThoughtSchema = new Schema({
         ref: 'User',
         required
     },
-    reactions: {
-        
-    }
-    
+    reactions: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Reactions'
+        }
+    ]
 },
 {
     toJSON: {
+        virtuals: true,
         getters: true
     }
 })
 
 const Thought = model('Thought', ThoughtSchema);
+
+// create a virtual of total reactions
 
 module.exports = Thought;
