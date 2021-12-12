@@ -8,13 +8,13 @@ const ReactionSchema = new Schema({
     },
     reactionBody: {
         type: String,
-        required,
+        require,
         max: [280]
     },
     username: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        required
+        require
     },
     createdAt: {
         type: Date,
@@ -31,7 +31,7 @@ const ReactionSchema = new Schema({
 const ThoughtSchema = new Schema({
     thoughtText: {
         type: String,
-        required,
+        require,
         min: [1, 'Please enter text for your thought.'],
         max: [280, 'This thought is too long! (280 maximum characters)']
     },
@@ -43,7 +43,7 @@ const ThoughtSchema = new Schema({
     username: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        required
+        require
     },
     reactions: [ReactionSchema]
 },
